@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
 
-function App() {
+export const App = () => {
+
+  const [nome, setNome] = useState("");
+  const [username, setUsername] = useState("");
+
+
+  const getData = () => {
+    console.log([
+      {
+        nome: "teste",
+        sobrenome: "teste"
+      },
+      {
+        nome: "teste",
+        sobrenome: "teste"
+      }
+    ])
+  }
+
+  useEffect(() => {
+    getData()
+  }, [nome])
+
+  const handleSubmit = () => {
+    const user = {
+      nomeusuario: nome,
+      username: username
+    }
+
+    console.log(user)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input placeholder="nome do usuario" type={"text"} onChange={(e) => setNome(e.target.value)} />
+      <input placeholder="username" type={"text"} onChange={(e) => setUsername(e.target.value)}/>
+      
+      <button onClick={() => handleSubmit()}>enviar</button>
     </div>
   );
 }
-
-export default App;
